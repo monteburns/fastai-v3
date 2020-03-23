@@ -65,7 +65,7 @@ async def analyze(request):
 #        scale='Sapina kadar '
 #    if max(prediction[2]) < 0.95:
 #        scale='Hafif '
-    return JSONResponse({'Sonuc': str(prediction)})
+    return JSONResponse({'Result': str(prediction)})
 
 
 if __name__ == '__main__':
