@@ -54,6 +54,10 @@ async def homepage(request):
     html_file = path / 'view' / 'index.html'
     return HTMLResponse(html_file.open().read())
 
+#    if max(prediction[2]) > 0.98:
+#        scale='Sapina kadar '
+#    if max(prediction[2]) < 0.95:
+#        scale='Hafif '
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
@@ -61,12 +65,7 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
-#    if max(prediction[2]) > 0.98:
-#        scale='Sapina kadar '
-#    if max(prediction[2]) < 0.95:
-#        scale='Hafif '
-    return JSONResponse({'Result': str(prediction)})
-
+    return JSONResponse({'result': str(prediction)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:
