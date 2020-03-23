@@ -60,12 +60,12 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img)
+    prediction = learn.predict(img)[0]
 #    if max(prediction[2]) > 0.98:
 #        scale='Sapina kadar '
 #    if max(prediction[2]) < 0.95:
 #        scale='Hafif '
-    return JSONResponse({'Sonuc': str(prediction[0])})
+    return JSONResponse({'Sonuc': str(prediction)})
 
 
 if __name__ == '__main__':
