@@ -59,6 +59,8 @@ async def homepage(request):
 #    if max(prediction[2]) < 0.95:
 #        scale='Hafif '
 
+scale='Normal '
+
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
     img_data = await request.form()
