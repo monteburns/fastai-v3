@@ -54,10 +54,6 @@ async def homepage(request):
     html_file = path / 'view' / 'index.html'
     return HTMLResponse(html_file.open().read())
 
-#    if max(prediction[2]) > 0.98:
-#        scale='Sapina kadar '
-#    if max(prediction[2]) < 0.95:
-#        scale='Hafif '
 
 scale='Normal '
 
@@ -68,8 +64,8 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)
     if max(prediction[2]) > 0.98:
-        scale='Sapina kadar '
-    if max(prediction[2]) < 0.95:
+        scale='Tam bir '
+    if max(prediction[2]) < 0.90:
         scale='Hafif '
     return JSONResponse({'result': scale + str(prediction[0])})
 
